@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { RegisterUserDto } from './dto/register-user-dto';
 import { RedisService } from 'src/redis/redis.service';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Permission } from './entities/permission.entity';
 import { Role } from './entities/role.entity';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -239,5 +239,56 @@ export class UserService {
       this.logger.error(error);
       return '用户信息修改失败';
     }
+  }
+
+  async freeze(userId: number) {
+    return await this.userRepository.update(userId, { isFrozen: true });
+  }
+
+  async findUsersByPage(
+    username: string,
+    nickName: string,
+    email: string,
+    pageNo: number,
+    pageSize: number,
+  ) {
+    // 计算出当前页码跳过多少条记录，取多少条记录就好了
+    const skipCount = (pageNo - 1) * pageSize;
+
+    // 搜索条件
+    const condition: Record<string, any> = {};
+
+    if (username) {
+      condition.username = Like(`%${username}%`);
+    }
+
+    if (nickName) {
+      condition.nickName = Like(`%${nickName}%`);
+    }
+
+    if (email) {
+      condition.email = Like(`%${email}%`);
+    }
+
+    const [users, totalCount] = await this.userRepository.findAndCount({
+      select: [
+        'id',
+        'username',
+        'nickName',
+        'email',
+        'phoneNumber',
+        'isFrozen',
+        'headPic',
+        'createTime',
+      ],
+      skip: skipCount,
+      take: pageSize,
+      where: condition,
+    });
+
+    return {
+      users,
+      totalCount,
+    };
   }
 }
