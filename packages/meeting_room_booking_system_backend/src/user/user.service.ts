@@ -36,6 +36,7 @@ export class UserService {
     const foundUser = await this.useRepository.findOneBy({
       username: user.username,
     });
+    console.log('foundUser: ', foundUser);
 
     if (foundUser) {
       throw new HttpException('用户已存在', HttpStatus.BAD_REQUEST);
@@ -43,8 +44,8 @@ export class UserService {
 
     const newUser = new User();
     newUser.username = user.username;
-    newUser.password = md5(user.password);
     newUser.email = user.email;
+    newUser.password = user.password;
     newUser.nickName = user.nickName;
 
     try {

@@ -6,11 +6,18 @@ import {
   UpdateDateColumn,
   JoinTable,
   ManyToMany,
+  BeforeInsert,
 } from 'typeorm';
 import { Role } from './role.entity';
+import { md5 } from 'src/utils';
 
 @Entity()
 export class User {
+  @BeforeInsert()
+  encryptPwd() {
+    this.password = md5(this.password);
+  }
+
   @PrimaryGeneratedColumn({
     comment: '用户ID',
   })
