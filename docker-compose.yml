@@ -1,0 +1,21 @@
+# TODO
+version: "1.0"
+services:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    depends_on:
+      - mysql_container
+      - redis_container
+    ports:
+      - "3000:3000"
+  mysql-container:
+    image: mysql
+    volumes:
+      - /c/Users/ak/Desktop/akclownMySql:/var/lib/mysql
+  redis-container:
+    image: redis
+    volumes:
+      - /c/Users/ak/Desktop/akclownRedis:/data
