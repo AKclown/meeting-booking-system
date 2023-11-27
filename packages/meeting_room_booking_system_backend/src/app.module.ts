@@ -9,12 +9,15 @@ import { Permission } from './user/entities/permission.entity';
 import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './email/email.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { LoginGuard } from './login.guard';
+import { PermissionGuard } from './permission.guard';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: 'src/.env',
+      envFilePath: `src/.${process.env.NODE_ENV}.env`,
     }),
     TypeOrmModule.forRootAsync({
       useFactory(configService: ConfigService) {
@@ -42,6 +45,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     EmailModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // $ 注册顺序存在有先后顺序,在使用阶段的装饰器没有顺序关系
+    {
+      provide: APP_GUARD,
+      useClass: LoginGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionGuard,
+    },
+  ],
 })
 export class AppModule { }
