@@ -8,12 +8,12 @@ export class EmailService {
 
   constructor(private configService: ConfigService) {
     this.transporter = createTransport({
-      host: 'smtp.qq.com',
-      port: 465,
+      host: this.configService.get<string>('nodemailer_host'),
+      port: this.configService.get<number>('nodemailer_port'),
       secure: true,
       auth: {
-        user: this.configService.get('email_user'),
-        pass: this.configService.get('email_password'),
+        user: this.configService.get<string>('nodemailer_auth_user'),
+        pass: this.configService.get<string>('nodemailer_auth_pass'),
       },
     });
   }
@@ -22,7 +22,7 @@ export class EmailService {
     await this.transporter.sendMail({
       from: {
         name: '系统邮件',
-        address: this.configService.get('email_user'),
+        address: this.configService.get<string>('nodemailer_auth_user'),
       },
       to,
       subject,
