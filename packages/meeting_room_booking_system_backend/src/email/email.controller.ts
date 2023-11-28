@@ -1,7 +1,8 @@
 import { Controller, Get, HttpStatus, Inject, Query } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { RedisService } from 'src/redis/redis.service';
-import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { RequireLogin, UserInfo } from 'src/custom.decorator';
 
 @ApiTags('邮箱管理模块')
 @Controller('email')
@@ -63,20 +64,15 @@ export class EmailController {
     return '发送成功';
   }
 
-  @ApiQuery({
-    name: 'address',
-    type: String,
-    description: '邮箱地址',
-    required: true,
-    example: '1376513637@qq.com',
-  })
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.OK,
     description: '发送成功',
     type: String,
   })
+  @RequireLogin()
   @Get('update/captcha')
-  async updateCaptcha(@Query('address') address: string) {
+  async updateCaptcha(@UserInfo('email') address: string) {
     const code = Math.random().toString().slice(2, 8);
     await this.redisService.set(`update_user_captcha_${address}`, code, 5 * 60);
     await this.emailService.sendMail({

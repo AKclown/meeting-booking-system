@@ -6,9 +6,10 @@ import { FormatResponseInterceptor } from './format-response.interceptor';
 import { InvokeRecordInterceptor } from './invoke-record.interceptor';
 import { CustomExceptionFilter } from './custom-exception.filter';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // 拦截器、except filter、pipe
   app.useGlobalPipes(new ValidationPipe());
@@ -29,6 +30,14 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-doc', app, document);
+
+  // 开启跨域
+  app.enableCors();
+
+  // 设置静态目录
+  app.useStaticAssets('uploads', {
+    prefix: '/uploads',
+  });
 
   // 获取到环境变量配置
   const configService = app.get(ConfigService);

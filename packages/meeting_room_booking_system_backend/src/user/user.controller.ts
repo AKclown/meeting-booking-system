@@ -8,6 +8,9 @@ import {
   UnauthorizedException,
   DefaultValuePipe,
   HttpStatus,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegisterUserDto } from './dto/register-user-dto';
@@ -29,11 +32,14 @@ import {
 } from '@nestjs/swagger';
 import { refreshTokenVo } from './vo/refresh-token.vo';
 import { UserListVo } from './vo/user-list.vo';
+import { FileInterceptor } from '@nestjs/platform-express';
+import * as path from 'path';
+import { storage } from 'src/my-file-storage';
 
 @ApiTags('用户管理模块')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Inject(JwtService)
   private jwtService: JwtService;
@@ -199,13 +205,12 @@ export class UserController {
     return vo;
   }
 
-  @ApiBearerAuth()
   @ApiBody({
     type: UpdateUserPasswordDto,
   })
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
-    description: '验证码已失效/验证码不正确',
+    description: '验证码已失效/验证码不正确/邮箱不正确',
     type: String,
   })
   @ApiResponse({
@@ -214,12 +219,8 @@ export class UserController {
     type: String,
   })
   @Post(['update_password', 'admin/update_password'])
-  @RequireLogin()
-  async updatePassword(
-    @UserInfo('userId') userId: number,
-    @Body() passwordDto: UpdateUserPasswordDto,
-  ) {
-    return await this.userService.updatePassword(userId, passwordDto);
+  async updatePassword(@Body() passwordDto: UpdateUserPasswordDto) {
+    return await this.userService.updatePassword(passwordDto);
   }
 
   @ApiBearerAuth()
@@ -325,17 +326,47 @@ export class UserController {
     );
   }
 
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      dest: 'uploads',
+      // 自定义存储，一般线上都是直接存入到文件系统里
+      storage: storage,
+      limits: {
+        fileSize: 1024 * 1024 * 3,
+      },
+      // $ 限制只能上传图片
+      fileFilter(req, file, callback) {
+        const extname = path.extname(file.originalname);
+        if (['.png', '.jpg', '.jpeg', '.gif'].includes(extname)) {
+          // 第一个参数为error，第二个参数为是否接收文件
+          callback(null, true);
+        } else {
+          callback(new BadRequestException('只能上传图片'), false);
+        }
+      },
+    }),
+  )
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log('file: ', file);
+    return file.path;
+  }
+
   // *********************
   // Create Token
   // *********************
 
   getAccessToken(
-    user: Pick<IUserInfo, 'id' | 'username' | 'roles' | 'permissions'>,
+    user: Pick<
+      IUserInfo,
+      'id' | 'username' | 'roles' | 'permissions' | 'email'
+    >,
   ) {
     return this.jwtService.sign(
       {
         userId: user.id,
         username: user.username,
+        email: user.email,
         roles: user.roles,
         permissions: user.permissions,
       },
