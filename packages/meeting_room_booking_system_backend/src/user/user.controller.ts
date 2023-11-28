@@ -26,6 +26,7 @@ import { generateParseIntPipe } from 'src/utils';
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiConsumes,
   ApiQuery,
   ApiResponse,
   ApiTags,
@@ -326,6 +327,23 @@ export class UserController {
     );
   }
 
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '文件路径',
+    type: String,
+  })
   @Post('upload')
   @UseInterceptors(
     FileInterceptor('file', {
