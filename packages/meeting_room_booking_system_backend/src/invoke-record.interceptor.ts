@@ -13,7 +13,7 @@ export class InvokeRecordInterceptor implements NestInterceptor {
   private readonly logger = new Logger(InvokeRecordInterceptor.name);
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    // $ 记录访问的ip、user agent 、请求的controller、method、接口耗时、响应内容、当前登录的用户信息等
+    // $ 记录访问的ip、userAgent 、请求的controller、method、接口耗时、响应内容、当前登录的用户信息等
     const request = context.switchToHttp().getRequest<Request>();
     const response = context.switchToHttp().getResponse<Response>();
 

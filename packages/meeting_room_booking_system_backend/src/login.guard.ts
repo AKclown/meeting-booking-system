@@ -26,7 +26,7 @@ declare module 'express' {
 
 @Injectable()
 export class LoginGuard implements CanActivate {
-  @Inject()
+  @Inject(Reflector)
   private reflector: Reflector;
 
   @Inject(JwtService)
