@@ -212,6 +212,9 @@ importers:
       axios:
         specifier: ^1.6.2
         version: registry.npmmirror.com/axios@1.6.2
+      rc-menu:
+        specifier: ^9.12.2
+        version: registry.npmmirror.com/rc-menu@9.12.2(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: registry.npmmirror.com/react@18.2.0
