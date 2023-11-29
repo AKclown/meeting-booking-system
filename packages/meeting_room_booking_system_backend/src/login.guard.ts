@@ -9,7 +9,6 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { Permission } from './user/entities/permission.entity';
-import { UnLoginException } from './unlogin.filter';
 
 interface JwtUserData {
   userId: number;

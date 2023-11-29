@@ -14,6 +14,8 @@ import { LoginGuard } from './login.guard';
 import { PermissionGuard } from './permission.guard';
 import { MeetingRoomModule } from './meeting-room/meeting-room.module';
 import { MeetingRoom } from './meeting-room/entities/meeting-room.entity';
+import { BookingModule } from './booking/booking.module';
+import { Booking } from './booking/entity/booking.entity';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { MeetingRoom } from './meeting-room/entities/meeting-room.entity';
           username: configService.get<string>('mysql_server_username'),
           password: configService.get<string>('mysql_server_password'),
           database: configService.get<string>('mysql_server_database'),
-          entities: [User, Role, Permission, MeetingRoom],
+          entities: [User, Role, Permission, MeetingRoom, Booking],
           synchronize: true,
           logging: true,
           poolSize: 10,
@@ -46,6 +48,7 @@ import { MeetingRoom } from './meeting-room/entities/meeting-room.entity';
     RedisModule,
     EmailModule,
     MeetingRoomModule,
+    BookingModule,
   ],
   controllers: [AppController],
   providers: [
