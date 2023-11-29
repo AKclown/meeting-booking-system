@@ -14,9 +14,9 @@ import { generateParseIntPipe } from 'src/utils';
 import { CreateMeetingRoomDto } from './dto/create-meeting-room.dto';
 import { UpdateMeetingRoomDto } from './dto/update-meeting-room.dto';
 
-@Controller('meeting_room')
+@Controller('meeting-room')
 export class MeetingRoomController {
-  constructor(private readonly meetingRoomService: MeetingRoomService) { }
+  constructor(private readonly meetingRoomService: MeetingRoomService) {}
 
   @Get('init-data')
   async initData() {
@@ -38,9 +38,15 @@ export class MeetingRoomController {
     @Query('capacity') capacity: number,
     @Query('equipment') equipment: string,
     @Query('location') location: string,
-
   ) {
-    return await this.meetingRoomService.list(pageNo, pageSize, name, capacity, equipment, location);
+    return await this.meetingRoomService.list(
+      pageNo,
+      pageSize,
+      name,
+      capacity,
+      equipment,
+      location,
+    );
   }
 
   @Post('create')
