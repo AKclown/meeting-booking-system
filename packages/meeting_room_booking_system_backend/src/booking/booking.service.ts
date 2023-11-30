@@ -12,7 +12,7 @@ export class BookingService {
   @InjectEntityManager()
   private entityManager: EntityManager;
 
-  @Inject()
+  @Inject(RedisService)
   private redisService: RedisService;
 
   @Inject()

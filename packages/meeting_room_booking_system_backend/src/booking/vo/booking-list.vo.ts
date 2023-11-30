@@ -5,7 +5,7 @@ export class BookingListVo {
   @ApiProperty({
     type: [BookingVo],
   })
-  users: Array<BookingVo>;
+  bookings: Array<BookingVo>;
 
   @ApiProperty()
   totalCount: number;
