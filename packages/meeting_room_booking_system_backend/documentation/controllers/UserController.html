@@ -1,0 +1,1894 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>meeting_room_booking_system_backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/postmark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">meeting_room_booking_system_backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >UserController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/user/user.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>user</code>
+            </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#adminLogin" >adminLogin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#adminRefresh" >adminRefresh</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#freeze" >freeze</a>
+                            </li>
+                            <li>
+                                <a href="#getAccessToken" >getAccessToken</a>
+                            </li>
+                            <li>
+                                <a href="#getRefreshToken" >getRefreshToken</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#info" >info</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#initData" >initData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#list" >list</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#refresh" >refresh</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#register" >register</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updatePassword" >updatePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#uploadFile" >uploadFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#userLogin" >userLogin</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adminLogin"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>adminLogin</b></span>
+                        <a href="#adminLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adminLogin(loginUser: <a href="../classes/LoginUserDto.html" target="_self">LoginUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBody({type: LoginUserDto})<br />@ApiResponse({status: undefined, description: &#x27;用户不存在/密码错误&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;用户信息和token&#x27;, type: LoginUserVo})<br />@Post(&#x27;admin/login&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/user/user.controller.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>loginUser</td>
+                                            <td>
+                                                            <code><a href="../classes/LoginUserDto.html" target="_self" >LoginUserDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adminRefresh"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>adminRefresh</b></span>
+                        <a href="#adminRefresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adminRefresh(refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiQuery({name: &#x27;refreshToken&#x27;, description: &#x27;刷新 token&#x27;, example: &#x27;Bearer xxx&#x27;, required: true, type: String})<br />@ApiResponse({status: undefined, description: &#x27;token已失效，请重新登录&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;刷新成功&#x27;, type: refreshTokenVo})<br />@Get(&#x27;admin/refresh&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/user/user.controller.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>refreshToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="freeze"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>freeze</b></span>
+                        <a href="#freeze"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>freeze(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBearerAuth()<br />@ApiQuery({name: &#x27;userId&#x27;, description: &#x27;用户 id&#x27;, example: &#x27;1024&#x27;, required: true, type: String})<br />@ApiResponse({status: undefined, description: &#x27;冻结成功&#x27;, type: String})<br />@RequireLogin()<br />@Get(&#x27;freeze&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/user/user.controller.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAccessToken"></a>
+                    <span class="name">
+                        <span ><b>getAccessToken</b></span>
+                        <a href="#getAccessToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAccessToken(user: <a href="../entitys/User.html" target="_self">Pick&lt;IUserInfo | &quot;id&quot; | &quot;username&quot; | &quot;roles&quot; | &quot;permissions&quot; | &quot;email&quot;&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/user/user.controller.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="../entitys/User.html" target="_self" >Pick&lt;IUserInfo | &quot;id&quot; | &quot;username&quot; | &quot;roles&quot; | &quot;permissions&quot; | &quot;email&quot;&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRefreshToken"></a>
+                    <span class="name">
+                        <span ><b>getRefreshToken</b></span>
+                        <a href="#getRefreshToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRefreshToken(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="398"
+                                    class="link-to-prism">src/user/user.controller.ts:398</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="info"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>info</b></span>
+                        <a href="#info"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>info(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBearerAuth()<br />@ApiResponse({status: undefined, description: &#x27;success&#x27;, type: UserDetailVo})<br />@Get(&#x27;info&#x27;)<br />@RequireLogin()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/user/user.controller.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initData"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>initData</b></span>
+                        <a href="#initData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initData()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;init-data&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/user/user.controller.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="list"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>list</b></span>
+                        <a href="#list"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>list(pageNo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, nickName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBearerAuth()<br />@ApiQuery({name: &#x27;pageNo&#x27;, description: &#x27;第几页&#x27;, example: 1, type: String})<br />@ApiQuery({name: &#x27;pageSize&#x27;, description: &#x27;每页多少条&#x27;, example: 10, type: String})<br />@ApiQuery({name: &#x27;username&#x27;, description: &#x27;用户名&#x27;, example: &#x27;akclown&#x27;, type: String})<br />@ApiQuery({name: &#x27;nickName&#x27;, description: &#x27;昵称&#x27;, example: &#x27;角落里&#x27;, type: String})<br />@ApiQuery({name: &#x27;email&#x27;, description: &#x27;邮箱&#x27;, example: &#x27;1376513637@qq.com&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;success&#x27;, type: UserListVo})<br />@RequireLogin()<br />@Get(&#x27;list&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/user/user.controller.ts:308</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>pageNo</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>pageSize</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>username</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>nickName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>email</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refresh"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>refresh</b></span>
+                        <a href="#refresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>refresh(refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiQuery({name: &#x27;refreshToken&#x27;, description: &#x27;刷新 token&#x27;, example: &#x27;Bearer xxx&#x27;, required: true, type: String})<br />@ApiResponse({status: undefined, description: &#x27;token已失效，请重新登录&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;刷新成功&#x27;, type: refreshTokenVo})<br />@Get(&#x27;refresh&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/user/user.controller.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>refreshToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="register"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>register</b></span>
+                        <a href="#register"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>register(registerUser: <a href="../classes/RegisterUserDto.html" target="_self">RegisterUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBody({type: RegisterUserDto})<br />@ApiResponse({status: undefined, description: &#x27;验证码已失效/验证码不正确/用户已存在&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;注册成功/失败&#x27;, type: String})<br />@Post(&#x27;register&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/user/user.controller.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>registerUser</td>
+                                            <td>
+                                                            <code><a href="../classes/RegisterUserDto.html" target="_self" >RegisterUserDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBearerAuth()<br />@ApiBody({type: UpdateUserDto})<br />@ApiResponse({status: undefined, description: &#x27;验证码已失效/验证码不正确&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;用户信息修改成功/失败&#x27;, type: String})<br />@Post([&#x27;update&#x27;, &#x27;admin/update&#x27;])<br />@RequireLogin()<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="243"
+                                    class="link-to-prism">src/user/user.controller.ts:243</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateUserDto</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatePassword"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>updatePassword</b></span>
+                        <a href="#updatePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updatePassword(passwordDto: <a href="../classes/UpdateUserPasswordDto.html" target="_self">UpdateUserPasswordDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBody({type: UpdateUserPasswordDto})<br />@ApiResponse({status: undefined, description: &#x27;验证码已失效/验证码不正确/邮箱不正确&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;密码修改成功/失败&#x27;, type: String})<br />@Post([&#x27;update_password&#x27;, &#x27;admin/update_password&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/user/user.controller.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>passwordDto</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateUserPasswordDto.html" target="_self" >UpdateUserPasswordDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadFile"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>uploadFile</b></span>
+                        <a href="#uploadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uploadFile(file: Express.Multer.File)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@ApiBody({schema: undefined})<br />@ApiResponse({status: undefined, description: &#x27;文件路径&#x27;, type: String})<br />@Post(&#x27;upload&#x27;)<br />@UseInterceptors(undefined)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="368"
+                                    class="link-to-prism">src/user/user.controller.ts:368</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>Express.Multer.File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userLogin"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>userLogin</b></span>
+                        <a href="#userLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>userLogin(loginUser: <a href="../classes/LoginUserDto.html" target="_self">LoginUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiBody({type: LoginUserDto})<br />@ApiResponse({status: undefined, description: &#x27;用户不存在/密码错误&#x27;, type: String})<br />@ApiResponse({status: undefined, description: &#x27;用户信息和token&#x27;, type: LoginUserVo})<br />@Post(&#x27;login&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/user/user.controller.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>loginUser</td>
+                                            <td>
+                                                            <code><a href="../classes/LoginUserDto.html" target="_self" >LoginUserDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Inject,
+  Query,
+  UnauthorizedException,
+  DefaultValuePipe,
+  HttpStatus,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
+} from &#x27;@nestjs/common&#x27;;
+import { UserService } from &#x27;./user.service&#x27;;
+import { RegisterUserDto } from &#x27;./dto/register-user-dto&#x27;;
+import { LoginUserDto } from &#x27;./dto/login-user.dto&#x27;;
+import { JwtService } from &#x27;@nestjs/jwt&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { UserInfo as IUserInfo, LoginUserVo } from &#x27;./vo/login-user.vo&#x27;;
+import { RequireLogin, UserInfo } from &#x27;src/custom.decorator&#x27;;
+import { UserDetailVo } from &#x27;./vo/user-info.vo&#x27;;
+import { UpdateUserPasswordDto } from &#x27;./dto/update-user-password.dto&#x27;;
+import { UpdateUserDto } from &#x27;./dto/udpate-user.dto&#x27;;
+import { generateParseIntPipe } from &#x27;src/utils&#x27;;
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from &#x27;@nestjs/swagger&#x27;;
+import { refreshTokenVo } from &#x27;./vo/refresh-token.vo&#x27;;
+import { UserListVo } from &#x27;./vo/user-list.vo&#x27;;
+import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
+import * as path from &#x27;path&#x27;;
+import { storage } from &#x27;src/my-file-storage&#x27;;
+
+@ApiTags(&#x27;用户管理模块&#x27;)
+@Controller(&#x27;user&#x27;)
+export class UserController {
+  constructor(private readonly userService: UserService) { }
+
+  @Inject(JwtService)
+  private jwtService: JwtService;
+
+  @Inject(ConfigService)
+  private configService: ConfigService;
+
+  @Get(&#x27;init-data&#x27;)
+  async initData() {
+    // !!! 生成环境不会这么去初始化数据
+    await this.userService.initData();
+    return &#x27;初始化数据成功&#x27;;
+  }
+
+  @ApiBody({ type: RegisterUserDto })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: &#x27;验证码已失效/验证码不正确/用户已存在&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;注册成功/失败&#x27;,
+    type: String,
+  })
+  @Post(&#x27;register&#x27;)
+  async register(@Body() registerUser: RegisterUserDto) {
+    return await this.userService.register(registerUser);
+  }
+
+  @ApiBody({ type: LoginUserDto })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: &#x27;用户不存在/密码错误&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;用户信息和token&#x27;,
+    type: LoginUserVo,
+  })
+  @Post(&#x27;login&#x27;)
+  async userLogin(@Body() loginUser: LoginUserDto) {
+    const vo &#x3D; await this.userService.login(loginUser, false);
+    vo.accessToken &#x3D; this.getAccessToken(vo.userInfo);
+    vo.refreshToken &#x3D; this.getRefreshToken(vo.userInfo.id);
+    return vo;
+  }
+
+  @ApiBody({ type: LoginUserDto })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: &#x27;用户不存在/密码错误&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;用户信息和token&#x27;,
+    type: LoginUserVo,
+  })
+  @Post(&#x27;admin/login&#x27;)
+  async adminLogin(@Body() loginUser: LoginUserDto) {
+    const vo &#x3D; await this.userService.login(loginUser, true);
+    vo.accessToken &#x3D; this.getAccessToken(vo.userInfo);
+
+    vo.refreshToken &#x3D; this.getRefreshToken(vo.userInfo.id);
+    return vo;
+  }
+
+  @ApiQuery({
+    name: &#x27;refreshToken&#x27;,
+    description: &#x27;刷新 token&#x27;,
+    example: &#x27;Bearer xxx&#x27;,
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: &#x27;token已失效，请重新登录&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;刷新成功&#x27;,
+    type: refreshTokenVo,
+  })
+  @Get(&#x27;refresh&#x27;)
+  async refresh(@Query(&#x27;refreshToken&#x27;) refreshToken: string) {
+    try {
+      const data &#x3D; this.jwtService.verify(refreshToken);
+      const user &#x3D; await this.userService.findUserById(data.userId, false);
+
+      const accessToken &#x3D; this.getAccessToken(user);
+
+      const newRefreshToken &#x3D; this.getRefreshToken(user.id);
+
+      const vo &#x3D; new refreshTokenVo();
+      vo.accessToken &#x3D; accessToken;
+      vo.refreshToken &#x3D; newRefreshToken;
+
+      return vo;
+    } catch (error) {
+      throw new UnauthorizedException(&#x27;token已失效，请重新登录&#x27;);
+    }
+  }
+
+  @ApiQuery({
+    name: &#x27;refreshToken&#x27;,
+    description: &#x27;刷新 token&#x27;,
+    example: &#x27;Bearer xxx&#x27;,
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: &#x27;token已失效，请重新登录&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;刷新成功&#x27;,
+    type: refreshTokenVo,
+  })
+  @Get(&#x27;admin/refresh&#x27;)
+  async adminRefresh(@Query(&#x27;refreshToken&#x27;) refreshToken: string) {
+    try {
+      const data &#x3D; this.jwtService.verify(refreshToken);
+      const user &#x3D; await this.userService.findUserById(data.userId, true);
+
+      const accessToken &#x3D; this.getAccessToken(user);
+      const newRefreshToken &#x3D; this.getRefreshToken(user.id);
+
+      const vo &#x3D; new refreshTokenVo();
+      vo.accessToken &#x3D; accessToken;
+      vo.refreshToken &#x3D; newRefreshToken;
+
+      return vo;
+    } catch (error) {
+      throw new UnauthorizedException(&#x27;token已失效，请重新登录&#x27;);
+    }
+  }
+
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;success&#x27;,
+    type: UserDetailVo,
+  })
+  @Get(&#x27;info&#x27;)
+  @RequireLogin()
+  async info(@UserInfo(&#x27;userId&#x27;) userId: number) {
+    const user &#x3D; await this.userService.findUserDetailById(userId);
+    const vo &#x3D; new UserDetailVo();
+    vo.id &#x3D; user.id;
+    vo.email &#x3D; user.email;
+    vo.username &#x3D; user.username;
+    vo.headPic &#x3D; user.headPic;
+    vo.phoneNumber &#x3D; user.phoneNumber;
+    vo.nickName &#x3D; user.nickName;
+    vo.createTime &#x3D; user.createTime;
+    vo.isFrozen &#x3D; user.isFrozen;
+
+    return vo;
+  }
+
+  @ApiBody({
+    type: UpdateUserPasswordDto,
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: &#x27;验证码已失效/验证码不正确/邮箱不正确&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;密码修改成功/失败&#x27;,
+    type: String,
+  })
+  @Post([&#x27;update_password&#x27;, &#x27;admin/update_password&#x27;])
+  async updatePassword(@Body() passwordDto: UpdateUserPasswordDto) {
+    return await this.userService.updatePassword(passwordDto);
+  }
+
+  @ApiBearerAuth()
+  @ApiBody({
+    type: UpdateUserDto,
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: &#x27;验证码已失效/验证码不正确&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;用户信息修改成功/失败&#x27;,
+    type: String,
+  })
+  @Post([&#x27;update&#x27;, &#x27;admin/update&#x27;])
+  @RequireLogin()
+  async update(
+    @UserInfo(&#x27;userId&#x27;) userId: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return await this.userService.update(userId, updateUserDto);
+  }
+
+  @ApiBearerAuth()
+  @ApiQuery({
+    name: &#x27;userId&#x27;,
+    description: &#x27;用户 id&#x27;,
+    example: &#x27;1024&#x27;,
+    required: true,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;冻结成功&#x27;,
+    type: String,
+  })
+  @RequireLogin()
+  @Get(&#x27;freeze&#x27;)
+  async freeze(@Query(&#x27;id&#x27;) userId: number) {
+    await this.userService.freeze(userId);
+    return &#x27;冻结成功&#x27;;
+  }
+
+  @ApiBearerAuth()
+  @ApiQuery({
+    name: &#x27;pageNo&#x27;,
+    description: &#x27;第几页&#x27;,
+    example: 1,
+    type: String,
+  })
+  @ApiQuery({
+    name: &#x27;pageSize&#x27;,
+    description: &#x27;每页多少条&#x27;,
+    example: 10,
+    type: String,
+  })
+  @ApiQuery({
+    name: &#x27;username&#x27;,
+    description: &#x27;用户名&#x27;,
+    example: &#x27;akclown&#x27;,
+    type: String,
+  })
+  @ApiQuery({
+    name: &#x27;nickName&#x27;,
+    description: &#x27;昵称&#x27;,
+    example: &#x27;角落里&#x27;,
+    type: String,
+  })
+  @ApiQuery({
+    name: &#x27;email&#x27;,
+    description: &#x27;邮箱&#x27;,
+    example: &#x27;1376513637@qq.com&#x27;,
+    type: String,
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;success&#x27;,
+    type: UserListVo,
+  })
+  @RequireLogin()
+  @Get(&#x27;list&#x27;)
+  async list(
+    @Query(&#x27;pageNo&#x27;, new DefaultValuePipe(1), generateParseIntPipe(&#x27;pageNo&#x27;))
+    pageNo: number,
+    @Query(
+      &#x27;pageSize&#x27;,
+      new DefaultValuePipe(2),
+      generateParseIntPipe(&#x27;pageSize&#x27;),
+    )
+    pageSize: number,
+    @Query(&#x27;username&#x27;) username: string,
+    @Query(&#x27;nickName&#x27;) nickName: string,
+    @Query(&#x27;email&#x27;) email: string,
+  ) {
+    return await this.userService.findUsersByPage(
+      username,
+      nickName,
+      email,
+      pageNo,
+      pageSize,
+    );
+  }
+
+  @ApiConsumes(&#x27;multipart/form-data&#x27;)
+  @ApiBody({
+    schema: {
+      type: &#x27;object&#x27;,
+      properties: {
+        file: {
+          type: &#x27;string&#x27;,
+          format: &#x27;binary&#x27;,
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: &#x27;文件路径&#x27;,
+    type: String,
+  })
+  @Post(&#x27;upload&#x27;)
+  @UseInterceptors(
+    FileInterceptor(&#x27;file&#x27;, {
+      dest: &#x27;uploads&#x27;,
+      // 自定义存储，一般线上都是直接存入到文件系统里
+      storage: storage,
+      limits: {
+        fileSize: 1024 * 1024 * 3,
+      },
+      // $ 限制只能上传图片
+      fileFilter(req, file, callback) {
+        const extname &#x3D; path.extname(file.originalname);
+        if ([&#x27;.png&#x27;, &#x27;.jpg&#x27;, &#x27;.jpeg&#x27;, &#x27;.gif&#x27;].includes(extname)) {
+          // 第一个参数为error，第二个参数为是否接收文件
+          callback(null, true);
+        } else {
+          callback(new BadRequestException(&#x27;只能上传图片&#x27;), false);
+        }
+      },
+    }),
+  )
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(&#x27;file: &#x27;, file);
+    return file.path;
+  }
+
+  // *********************
+  // Create Token
+  // *********************
+
+  getAccessToken(
+    user: Pick&lt;
+      IUserInfo,
+      &#x27;id&#x27; | &#x27;username&#x27; | &#x27;roles&#x27; | &#x27;permissions&#x27; | &#x27;email&#x27;
+    &gt;,
+  ) {
+    return this.jwtService.sign(
+      {
+        userId: user.id,
+        username: user.username,
+        email: user.email,
+        roles: user.roles,
+        permissions: user.permissions,
+      },
+      {
+        expiresIn:
+          this.configService.get(&#x27;jwt_access_token_expires_time&#x27;) || &#x27;30m&#x27;,
+      },
+    );
+  }
+
+  getRefreshToken(id: number) {
+    return this.jwtService.sign(
+      {
+        userId: id,
+      },
+      {
+        expiresIn:
+          this.configService.get(&#x27;jwt_refresh_token_expires_time&#x27;) || &#x27;7d&#x27;,
+      },
+    );
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

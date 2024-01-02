@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "compodoc": "compodoc -p tsconfig.json -s -o -c .compodoc.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "cross-env NODE_ENV=development nest start --watch",
@@ -40,6 +41,7 @@
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.23",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
